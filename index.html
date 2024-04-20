@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RaniVari Meat - Fresh Meat Online</title>
+    <style>
+        /* Basic styling for the website */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .product {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            padding: 1rem;
+            background-color: #fff;
+        }
+        .product img {
+            max-width: 100px;
+            margin-right: 1rem;
+        }
+        .product-details {
+            flex-grow: 1;
+        }
+        .quantity {
+            width: 50px;
+        }
+        .amount-box {
+            background-color: yellow;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+        .checkout-button {
+            background-color: green;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            cursor: pointer;
+        }
+        .payment-details {
+            background-color: blue;
+            color: white;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+        .place-order-button {
+            background-color: black;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            cursor: pointer;
+        }
+        .thank-you {
+            background-color: pink;
+            color: red;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>RaniVari Meat</h1>
+        <p>We sell fresh meat</p>
+    </header>
+    <div class="container">
+        <!-- Product Listings -->
+        <div class="product">
+            <img src="basa-fish.jpg" alt="Basa Fish">
+            <div class="product-details">
+                <h2>Basa Fish</h2>
+                <p>Price per kg: $10</p>
+                <input type="number" class="quantity" value="1" min="1">
+            </div>
+        </div>
+        <!-- Repeat similar blocks for other products -->
+        <!-- Rupchand Fish, Brown Crab, Prawns, Roasters, Broilers, Mutton Body, Mutton Head, Pork, Beef -->
+
+        <!-- Total Amount Box -->
+        <div class="amount-box">
+            <p>Total Amount: <span id="total-amount">$0</span></p>
+            <button class="checkout-button" onclick="showPaymentDetails()">Checkout</button>
+        </div>
+
+        <!-- Payment Details -->
+        <div class="payment-details" id="payment-details" style="display: none;">
+            <h2>Payment Details</h2>
+            <label for="address">Address:</label>
+            <input type="text" id="address" placeholder="Enter your address">
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" placeholder="Enter your phone number">
+            <button class="place-order-button" onclick="placeOrder()">Place Order</button>
+        </div>
+
+        <!-- Thank You Page -->
+        <div class="thank-you" id="thank-you" style="display: none;">
+            <h2>Thank You for Shopping!</h2>
+            <p>Your order is confirmed.</p>
+            <h3>Bill Details:</h3>
+            <p>Actual Total Price: $<span id="actual-total-price">0</span></p>
+            <p>Discount Price: $<span id="discount-price">0</span></p>
+            <p>Total Payable Price: $<span id="total-payable-price">0</span></p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for interactive features
+        const quantityInputs = document.querySelectorAll('.quantity');
+        const pricePerKg = 10; // Set the price per kg
+
+        quantityInputs.forEach(input => {
+            input.addEventListener('input', updateTotalAmount);
+        });
